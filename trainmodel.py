@@ -43,7 +43,7 @@ class ModelOps:
         self.projectID=ID
         # The data set we want to train this project on
         self.dataUri = "/dataTables/dataSources/cas~fs~cas-shared-default~fs~Public/tables/"+ dataSet
-#Perform Batch Retrain
+        #Perform Batch Retrain
         self.retrainingUrl = f"{self.baseURL}/dataMiningProjectResources/projects/{self.projectID}/retrainJobs"
         querystring = {"action":"batch", "dataUri":self.dataUri}
         payload = ""
@@ -52,7 +52,6 @@ class ModelOps:
             "accept": "application/vnd.sas.job.execution.job+json",
         }
         response = requests.request("POST", self.retrainingUrl, data=payload, headers=headers, params=querystring)
-
 
     def waitforTrainingToFinish(self):
         #Wait before starting to look for the job
